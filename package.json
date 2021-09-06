@@ -1,0 +1,163 @@
+{
+  "name": "@technikhil/react-daterangepicker",
+  "version": "1.0.13",
+  "description": "Simple date and time range picker for react apps",
+  "main": "index.js",
+  "scripts": {
+    "prod-test": "./node_modules/.bin/rimraf ./dist && ./node_modules/.bin/jest --coverage --coverageReporters=text-lcov | ./node_modules/.bin/coveralls",
+    "test": "./node_modules/.bin/rimraf ./dist && ./node_modules/.bin/jest",
+    "serve": "./node_modules/.bin/rimraf ./demo/dist && ./node_modules/.bin/concurrently \"./node_modules/.bin/webpack-dev-server --config ./webpack.config-demo.js\" \"./node_modules/.bin/webpack --watch\"",
+    "build": "./node_modules/.bin/rimraf ./dist && ./node_modules/.bin/webpack -p",
+    "build-demo": "rimraf ./demo/dist && ./node_modules/.bin/webpack -p --config ./webpack.config-demo.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "npm test"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,jsx}": [
+      "eslint",
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/testSetup/enzyme.js",
+    "testPathIgnorePatterns": [
+      "<rootDir>/testSetup",
+      "<rootDir>/demo",
+      "<rootDir>/src/js/lib",
+      "<rootDir>/src/js/common/insideOutsideClickDetector.spec.jsx",
+      "<rootDir>/src/common/constants"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!**/vendor/**",
+      "!**/demo/**",
+      "!**/dist/**",
+      "!**/test/**",
+      "!**/webpack.**",
+      "!**/testCoverage/**",
+      "!**/testSetup/**",
+      "!**/src/js/lib/**",
+      "!**/src/common/constants/**",
+      "!**/src/js/common/insideOutsideClickDetector.jsx"
+    ],
+    "collectCoverage": true,
+    "clearMocks": true,
+    "coverageDirectory": "testCoverage",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/testSetup/__mocks__/fileMock.js",
+      "\\.(css|less|scss)$": "identity-obj-proxy",
+      "@components/(.*)$": "<rootDir>/src/js/components/$1",
+      "@common/(.*)$": "<rootDir>/src/js/common/$1",
+      "@styles/(.*)$": "<rootDir>/src/scss/$1",
+      "@lib/(.*)$": "<rootDir>/src/js/lib/$1"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 80,
+        "functions": 90,
+        "lines": 90,
+        "statements": -10
+      }
+    }
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technikhil314/react-datetimerangepicker.git"
+  },
+  "keywords": [
+    "react",
+    "datepicker",
+    "daterange",
+    "daterangepicker",
+    "datetimepicker",
+    "date time picker",
+    "timepicker",
+    "input-control",
+    "datetimerangepicker",
+    "react-component",
+    "daterangepicker component",
+    "daterangepicker-component",
+    "react-components",
+    "timepicker component",
+    "timepicker-component"
+  ],
+  "author": "Nikhil Mehta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/technikhil314/react-datetimerangepicker/issues"
+  },
+  "homepage": "https://technikhil314.github.io/react-datetimerangepicker",
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-es2015": "^7.0.0-beta.53",
+    "@babel/preset-react": "^7.0.0",
+    "babel-core": "^7.0.0-0",
+    "babel-eslint": "^9.0.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.2",
+    "babel-plugin-transform-function-bind": "^6.22.0",
+    "bootstrap": "^4.1.3",
+    "concurrently": "^4.0.1",
+    "copy-webpack-plugin": "^4.5.2",
+    "coveralls": "^3.0.2",
+    "css-loader": "^1.0.0",
+    "enzyme": "^3.6.0",
+    "enzyme-adapter-react-16": "^1.5.0",
+    "eslint": "^5.5.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-config-standard-react": "^7.0.2",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.22.1",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.0.0-rc.14",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.2.2",
+    "lodash-webpack-plugin": "^0.11.5",
+    "node-sass": "^4.9.3",
+    "prettier": "^1.14.2",
+    "prop-types": "^15.6.2",
+    "raw-loader": "^0.5.1",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "sass-lint": "^1.12.1",
+    "sass-loader": "^7.1.0",
+    "simulant": "^0.2.2",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.8",
+    "why-did-you-update": "^0.1.1"
+  },
+  "dependencies": {
+    "css-vars-ponyfill": "^1.11.1",
+    "moment": "^2.22.2",
+    "moment-range": "^4.0.1"
+  },
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
